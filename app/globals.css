@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ProseMirror {
+  padding: 7px;
+  border-style: none;
+}
+
+.editor-input .ProseMirror p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bubble-menu {
+  background-color: #e98a15;
+  border: 1px solid var(--gray-1);
+  border-radius: 0.7rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  padding: 0.5rem;
+  width: 470px;
+  select {
+    background-color: white;
+    color: black;
+    font-weight: normal;
+  }
+  button {
+    background-color: unset;
+
+    &:hover {
+      background-color: #1574e9;
+    }
+
+    &.is-active {
+      background-color: white;
+    }
+  }
+}

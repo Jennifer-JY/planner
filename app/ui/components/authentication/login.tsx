@@ -1,0 +1,44 @@
+"use client";
+
+import { authenticate } from "@/app/lib/actions";
+import { useActionState } from "react";
+
+export const LoginForm = () => {
+  const [errorMessage, formAction, isPending] = useActionState(
+    authenticate,
+    undefined
+  );
+
+  return (
+    <div className="w-96">
+      <form
+        action={formAction}
+        className="flex flex-col border-solid border-2 p-8 bg-white"
+      >
+        <label htmlFor="login-email">E-mail</label>
+        <input
+          id="login-email"
+          className="border-solid border-2 h-10"
+          type="text"
+          name="email"
+        ></input>
+        <label htmlFor="login-password">Password</label>
+        <input
+          id="login-password"
+          className="border-solid border-2 h-10"
+          name="password"
+        ></input>
+        <button
+          type="submit"
+          aria-disabled={isPending}
+          className="border-solid border-2 mt-8 w-1/2 mx-auto h-8 bg-[#1574E9] text-white font-bold rounded-md"
+        >
+          LogIn
+        </button>
+        {errorMessage && <>Error: {errorMessage}</>}
+      </form>
+    </div>
+  );
+};
+
+export default LoginForm;
