@@ -19,6 +19,7 @@
     "@tiptap/react": "^2.11.3",
     "@tiptap/starter-kit": "^2.11.3",
     "bcrypt": "^5.1.1",
+    "dayjs": "^1.11.13",
     "next": "^15.1.6",
     "next-auth": "5.0.0-beta.25",
     "react": "^19.0.0",

@@ -1,6 +1,9 @@
+"use client";
 import { JSONContent } from "@tiptap/react";
 import ReadOnlyEditor from "../editor/readOnlyEditor";
 import Link from "next/link";
+import { useActionState, useState } from "react";
+import { displayMonth } from "@/app/lib/actions";
 
 const arr: number[] = [];
 const days = [
@@ -61,8 +64,26 @@ const sampleJson: JSONContent = {
 };
 
 export const Calendar = () => {
+  const [state, formAction] = useActionState(displayMonth, undefined);
+  const [monthValue, setMonthValue] = useState(
+    new Date().toISOString().slice(0, 7)
+  );
   return (
     <>
+      <form
+        action={formAction}
+        className="absolute top-2 left-1/2 transform -translate-x-1/2"
+      >
+        <label htmlFor="display-month"></label>
+        <input
+          id="display-month"
+          type="month"
+          name="month"
+          value={monthValue}
+          onChange={(e) => setMonthValue(e.target.value)}
+        />
+        <button type="submit">Go</button>
+      </form>
       <div className="w-full h-full grid grid-cols-7 grid-rows-[1fr_4fr_4fr_4fr_4fr] border-2">
         {days.map((d) => {
           return (
@@ -89,19 +110,8 @@ export const Calendar = () => {
         })}
       </div>
       <div className="inline-block max-w-full">
+        <div>{state}</div>
         <span>Lorem ipsum dolor </span>
-        <div className="inline">
-          <p className="inline">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-            modi, placeat distinctio, qui ea commodi dicta corrupti quidem vel
-            molestias magni dolorum magnam, quisquam aliquid deleniti unde
-            dolore necessitatibus! Quaerat! Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Inventore modi, placeat distinctio,
-            qui ea commodi dicta corrupti quidem vel molestias magni dolorum
-            magnam, quisquam aliquid deleniti unde dolore necessitatibus!
-            Quaerat!
-          </p>
-        </div>
       </div>
     </>
   );

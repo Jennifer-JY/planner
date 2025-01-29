@@ -19,3 +19,11 @@ export const authenticate = async (
     throw error;
   }
 };
+
+export const displayMonth = (
+  prevState: string | undefined,
+  formData: FormData
+) => {
+  console.log(formData);
+  return "thanks";
+};
