@@ -1,6 +1,6 @@
 import Calendar from "../ui/components/calendar/calendar";
 
-export const CalendarPage = () => {
+const CalendarPage = () => {
   return (
     <div className="h-full">
       <Calendar></Calendar>

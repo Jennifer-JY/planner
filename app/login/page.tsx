@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import LoginForm from "../ui/components/authentication/login";
 
-export const LogIn = () => {
+const LogIn = () => {
   return (
     <div className="flex justify-center h-screen items-center bg-[#c0c0c0]">
       <Suspense>

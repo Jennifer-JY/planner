@@ -1,3 +1,5 @@
-export const Month = () => {
+const Month = () => {
   return <>MOnth</>;
 };
+
+export default Month;

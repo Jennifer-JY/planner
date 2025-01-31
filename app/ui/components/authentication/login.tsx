@@ -3,7 +3,7 @@
 import { authenticate } from "@/lib/actions";
 import { useActionState } from "react";
 
-export const LoginForm = () => {
+const LoginForm = () => {
   const [errorMessage, formAction, isPending] = useActionState(
     authenticate,
     undefined

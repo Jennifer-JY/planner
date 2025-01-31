@@ -2,7 +2,7 @@ import { auth, signOut } from "@/auth";
 import { merriweather } from "../fonts";
 import Link from "next/link";
 
-export const HeadBar = async () => {
+const HeadBar = async () => {
   const session = await auth();
   return (
     <div className="w-screen h-11 bg-[#e9e0b4] flex flex-row items-center justify-between p-5">

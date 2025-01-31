@@ -63,7 +63,7 @@ const sampleJson: JSONContent = {
   ],
 };
 
-export const Calendar = () => {
+const Calendar = () => {
   const [state, formAction] = useActionState(displayMonth, undefined);
   const [monthValue, setMonthValue] = useState(
     new Date().toISOString().slice(0, 7)
