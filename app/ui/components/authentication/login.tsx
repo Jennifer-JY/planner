@@ -1,6 +1,6 @@
 "use client";
 
-import { authenticate } from "@/app/lib/actions";
+import { authenticate } from "@/lib/actions";
 import { useActionState } from "react";
 
 export const LoginForm = () => {

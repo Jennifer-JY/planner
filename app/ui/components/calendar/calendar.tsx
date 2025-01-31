@@ -3,7 +3,7 @@ import { JSONContent } from "@tiptap/react";
 import ReadOnlyEditor from "../editor/readOnlyEditor";
 import Link from "next/link";
 import { useActionState, useState } from "react";
-import { displayMonth } from "@/app/lib/actions";
+import { displayMonth } from "@/lib/actions";
 
 const arr: number[] = [];
 const days = [
