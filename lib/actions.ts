@@ -1,3 +1,4 @@
+"use server";
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 
@@ -20,10 +21,13 @@ export const authenticate = async (
   }
 };
 
-export const displayMonth = (
+export const displayMonth = async (
   prevState: string | undefined,
   formData: FormData
 ) => {
   console.log(formData);
+  for (const f of formData.entries()) {
+    console.log(`key: ${f[0]}, value: ${f[1]}`);
+  }
   return "thanks";
 };
