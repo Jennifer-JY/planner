@@ -84,7 +84,7 @@ const Calendar = () => {
         />
         <button type="submit">Go</button>
       </form>
-      <div className="w-full h-full grid grid-cols-7 grid-rows-[1fr_4fr_4fr_4fr_4fr] border-2">
+      <div className="w-full h-full grid grid-cols-7 grid-rows-[1fr_4fr_4fr_4fr_4fr_4fr] border-2">
         {days.map((d) => {
           return (
             <div
