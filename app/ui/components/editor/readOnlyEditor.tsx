@@ -7,6 +7,7 @@ export const ReadOnlyEditor = ({
 }: {
   jsonContent: JSONContent;
 }) => {
+  console.log("ReadOnlyEditor Content:", jsonContent);
   const editor = useEditor({
     ...editorConfig,
     content: jsonContent,

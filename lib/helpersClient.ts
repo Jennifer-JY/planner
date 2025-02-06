@@ -4,13 +4,14 @@ export const daysInMonthDisplay = (
 ) => {
   const days: number[] = [];
   const dayOfWeek = new Date(year, month - 1, 1).getDay();
+  const numOfDays = new Date(year, month, 0).getDate();
+  if (isNaN(dayOfWeek) || isNaN(numOfDays))
+    throw new Error("Invalid input: Invalid year-month");
 
   for (let i = 1; i < dayOfWeek; i++) {
-    days.push(100 + i);
+    days.push(0);
   }
 
-  const numOfDays = new Date(year, month, 0).getDate();
-  console.log(numOfDays);
   for (let i = 1; i <= numOfDays; i++) {
     days.push(i);
   }
