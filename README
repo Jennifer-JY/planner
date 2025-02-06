@@ -1,19 +1,5 @@
-Feb 4
-The calendar now displays the days in the selected month.
-=> Future improvement: to put the days on the sixth rows of the days
-in the next month so that users do not miss the days that they have to 
-scroll down to see.
+Next:
 
-Plan:
-seed the database for the todo item
-in the formAction, we calculate the days we are gonna display, with the 
-todo details that are stored in the database. So in the for loop where
-we generate the dates, we can just put the corresponding todo item with
-the dates
+Refactor!
 
-Then learn the next js again for the params. Adding actions for the editor page
-to create new todos and edite the existing todos.
-
-Add error and not found pages
-
-Add registration page
+add params so that users can edit and save todos for a specific day
