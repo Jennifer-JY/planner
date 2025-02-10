@@ -4,7 +4,6 @@ import { JSONContent } from "@tiptap/react";
 import { AuthError } from "next-auth";
 import prisma from "./prisma";
 
-// Try to make it tuple (maybe)
 type DayDisplayState = {
   todoId: string;
   day: number; // if 0, we mean no date
@@ -22,16 +21,12 @@ export const displayMonth = async (
   prevState: MonthDisplayState,
   formData: FormData
 ) => {
-  console.log(`prevstate: ${prevState}`);
-  for (const k of formData.keys()) {
-    console.log(k);
-  }
   const yearMonth = formData.get("yearMonth");
-  console.log(yearMonth);
+
   if (!yearMonth || typeof yearMonth !== "string") {
     return { ...prevState, error: "Invalid input: Missing year-month" };
   }
-  console.log("so we continue");
+
   try {
     const [yearStr, monthStr] = yearMonth.split("-");
     const [year, month] = [Number(yearStr), Number(monthStr)];
@@ -66,7 +61,6 @@ export const displayMonth = async (
 
     for (const e of todos) {
       const day = Number(e.date.toDateString().split(" ")[2]);
-      console.log(day);
       arr[day - 1].todoId = e.todoId;
       arr[day - 1].content = e.content as JSONContent;
     }
@@ -86,10 +80,9 @@ export const displayMonth = async (
       todos: retTodos,
       error: "",
     };
-    console.log(ret);
+
     return ret;
   } catch (err) {
-    console.log(err);
     return { ...prevState, error: `${err}` };
   }
 };
