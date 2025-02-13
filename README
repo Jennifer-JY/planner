@@ -1,5 +1,7 @@
-Next:
+Learning log
 
-Refactor!
+1. use params for the calendar display. With the page.tsx for the /calendar route being a server component, we can have the form in which we select the date as a client component, and then manipulate the URL searchParams to reflect which date the user wants to display. Thanks to the props params and searchParams that next js provided for page components, we can pass the date value from the prop to the server component that display the days of the selected month-year.
 
-add params so that users can edit and save todos for a specific day
+2. For vervel deployment, don't forget to import the .env file to vercel environment variables.
+
+3. For the LoginForm, don't forget the redirectTo hidden input so that the URL display correctly after a loggin is successful.
