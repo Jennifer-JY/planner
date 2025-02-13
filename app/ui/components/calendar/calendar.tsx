@@ -1,7 +1,6 @@
-"use client";
+"use server";
 import ReadOnlyEditor from "../editor/readOnlyEditor";
 import Link from "next/link";
-import { startTransition, useActionState, useEffect, useState } from "react";
 import { displayMonth } from "@/lib/actions";
 import { JSONContent } from "@tiptap/react";
 
@@ -15,43 +14,11 @@ const days = [
   { value: "Sun", color: "#53768d" },
 ];
 
-const Calendar = () => {
-  /**
-   * Initial values for states
-   */
-  const initialMonthState = {
-    todos: [],
-    error: "",
-  };
-  const [state, formAction] = useActionState(displayMonth, initialMonthState);
-  const [monthValue, setMonthValue] = useState(
-    new Date().toISOString().slice(0, 7)
-  );
-
-  useEffect(() => {
-    startTransition(() => {
-      const formData = new FormData();
-      formData.append("yearMonth", new Date().toISOString().slice(0, 7));
-      formAction(formData);
-    });
-  }, []);
+const Calendar = async ({ propMonthYear }: { propMonthYear: string }) => {
+  const data = await displayMonth(propMonthYear);
 
   return (
     <>
-      <form
-        action={formAction}
-        className="absolute top-2 left-1/2 transform -translate-x-1/2"
-      >
-        <label htmlFor="display-month"></label>
-        <input
-          id="display-month"
-          type="month"
-          name="yearMonth"
-          value={monthValue}
-          onChange={(e) => setMonthValue(e.target.value)}
-        />
-        <button type="submit">Go</button>
-      </form>
       <div className="w-full h-full grid grid-cols-7 grid-rows-[1fr_4fr_4fr_4fr_4fr_4fr] border-2">
         {days.map((d) => {
           return (
@@ -64,8 +31,8 @@ const Calendar = () => {
             </div>
           );
         })}
-        {state &&
-          state.todos?.map((a) => {
+        {data &&
+          data.todos?.map((a) => {
             if (a.day !== 0 && a.todoId !== "") {
               console.log("Rendering Todo:", a.day);
             }
@@ -87,7 +54,7 @@ const Calendar = () => {
           })}
       </div>
       <div className="inline-block max-w-full">
-        <div>{state?.error}</div>
+        <div>{data?.error}</div>
         <span>Lorem ipsum dolor </span>
       </div>
     </>

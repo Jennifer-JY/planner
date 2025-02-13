@@ -12,19 +12,16 @@ type DayDisplayState = {
   content: JSONContent;
 };
 
-export type MonthDisplayState = {
+export type MonthDisplayFormat = {
   todos?: DayDisplayState[];
   error: string;
 };
 
 export const displayMonth = async (
-  prevState: MonthDisplayState,
-  formData: FormData
-) => {
-  const yearMonth = formData.get("yearMonth");
-
+  yearMonth: string
+): Promise<MonthDisplayFormat> => {
   if (!yearMonth || typeof yearMonth !== "string") {
-    return { ...prevState, error: "Invalid input: Missing year-month" };
+    return { error: "Invalid input: Missing year-month" };
   }
 
   try {
@@ -76,14 +73,14 @@ export const displayMonth = async (
       });
     }
     const retTodos = [...emptyCard, ...arr];
-    const ret: MonthDisplayState = {
+    const ret: MonthDisplayFormat = {
       todos: retTodos,
       error: "",
     };
 
     return ret;
   } catch (err) {
-    return { ...prevState, error: `${err}` };
+    return { error: `${err}` };
   }
 };
 
