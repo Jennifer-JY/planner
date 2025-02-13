@@ -1,9 +1,12 @@
 "use client";
 
 import { authenticate } from "@/lib/actions";
+import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 
 const LoginForm = () => {
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/calendar";
   const [errorMessage, formAction, isPending] = useActionState(
     authenticate,
     undefined
@@ -28,6 +31,7 @@ const LoginForm = () => {
           className="border-solid border-2 h-10"
           name="password"
         ></input>
+        <input type="hidden" name="redirectTo" value={callbackUrl} />
         <button
           type="submit"
           aria-disabled={isPending}
