@@ -5,6 +5,7 @@ import {
   EditorContent,
   useEditorState,
   Editor,
+  JSONContent,
 } from "@tiptap/react";
 import React from "react";
 import Menu from "./menu/menu";
@@ -38,12 +39,13 @@ const useMyeditorState = (editor: Editor | null) => {
   });
 };
 
-const Tiptap = () => {
-  const countRenderRef = React.useRef(0);
+const Tiptap = ({ content }: { content: JSONContent }) => {
+  const editorContent = useEditor({
+    ...editorConfig,
+    content: content,
+    editable: true,
+  });
 
-  countRenderRef.current += 1;
-
-  const editorContent = useEditor(editorConfig);
   const currentEditorStateContent = useMyeditorState(editorContent);
 
   if (!editorContent) return null;
@@ -51,9 +53,6 @@ const Tiptap = () => {
   const giveMeJSON = () => {
     console.log(editorContent.getJSON());
   };
-  console.log("Render");
-
-  console.log(countRenderRef.current);
 
   return (
     <>

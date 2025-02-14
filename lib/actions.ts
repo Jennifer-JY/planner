@@ -17,6 +17,12 @@ export type MonthDisplayFormat = {
   error: string;
 };
 
+export type TodoForTodoId = {
+  date?: Date;
+  todos: JSONContent;
+  error?: string;
+};
+
 export const displayMonth = async (
   yearMonth: string
 ): Promise<MonthDisplayFormat> => {
@@ -81,6 +87,39 @@ export const displayMonth = async (
     return ret;
   } catch (err) {
     return { error: `${err}` };
+  }
+};
+
+export const fetchTodosGivenId = async (
+  date: string
+): Promise<TodoForTodoId> => {
+  try {
+    const [year, month, day] = date.split("-");
+    const todoDate = new Date(
+      Date.UTC(Number(year), Number(month) - 1, Number(day), 0, 0, 0)
+    );
+    const todos = await prisma.todo.findMany({
+      where: {
+        date: todoDate,
+      },
+    });
+    if (todos.length === 0) {
+      return {
+        todos: { type: "doc", content: [] },
+      };
+    }
+    if (todos.length > 1)
+      throw new Error("Stored more than 1 todo record for this day");
+
+    return {
+      todos: todos[0].content as JSONContent,
+      date: todos[0].date,
+    };
+  } catch (err) {
+    return {
+      todos: { type: "doc", content: [] },
+      error: `${err}`,
+    };
   }
 };
 
