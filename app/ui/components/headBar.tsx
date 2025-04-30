@@ -7,9 +7,16 @@ const HeadBar = async () => {
   return (
     <div className="w-screen h-11 bg-[#e9e0b4] flex flex-row items-center justify-between p-5">
       <div className={`${merriweather.className} text-[#B4BDE9] font-bold`}>
-        <Link href="/calendar">
-          <span className="mr-2">🗓️</span> PlanView
-        </Link>
+        {session && (
+          <Link href="/calendar">
+            <span className="mr-2">🗓️</span> PlanView
+          </Link>
+        )}
+        {!session && (
+          <Link href="/">
+            <span className="mr-2">🗓️</span> PlanView
+          </Link>
+        )}
       </div>
       {session && (
         <button
@@ -23,11 +30,18 @@ const HeadBar = async () => {
         </button>
       )}
       {!session && (
-        <Link href="/login">
-          <button className="bg-[#B4BDE9] text-white rounded-md w-20 h-8">
-            LogIn
-          </button>
-        </Link>
+        <div className="flex flex-row items-center justify-between gap-2.5">
+          <Link href="/login">
+            <button className="bg-[#B4BDE9] text-white rounded-md w-20 h-8">
+              LogIn
+            </button>
+          </Link>
+          <Link href="/register">
+            <button className="bg-[#B4BDE9] text-white rounded-md w-20 h-8">
+              Register
+            </button>
+          </Link>
+        </div>
       )}
     </div>
   );
