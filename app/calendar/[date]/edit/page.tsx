@@ -16,7 +16,7 @@ const TodoEditorPage = async (props: { params: Promise<{ date: string }> }) => {
         {todos.error && <div>error: {`${todos.error}`}</div>}
 
         <div>
-          <Tiptap content={todos.todos}></Tiptap>
+          <Tiptap content={todos.todos ?? { type: "doc", content: [] }} />
         </div>
       </div>
     </>

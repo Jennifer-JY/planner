@@ -243,3 +243,102 @@ export const register = async (
     };
   }
 };
+
+// save todo: content: string, date: string, todoId: string|undefine
+
+export const saveTodo = async (content: JSONContent, date: string) => {
+  console.log(JSON.stringify(content, null, 2));
+  // const testContent = {
+  //   type: "doc",
+  //   content: [
+  //     {
+  //       type: "paragraph",
+  //       content: [
+  //         {
+  //           type: "text",
+  //           text: "a",
+  //         },
+  //         {
+  //           type: "text",
+  //           text: "zvf",
+  //           marks: [
+  //             {
+  //               type: "textStyle",
+  //               attrs: {
+  //                 color: "#ef1515",
+  //                 fontFamily: "'Roboto', 'Roboto Fallback'",
+  //               },
+  //             },
+  //           ],
+  //         },
+  //         {
+  //           type: "text",
+  //           text: "a",
+  //         },
+  //         {
+  //           type: "text",
+  //           text: "dfdafdfad",
+  //           marks: [
+  //             {
+  //               type: "textStyle",
+  //               attrs: {
+  //                 color: "#000000",
+  //                 fontFamily: "'Caveat Brush', 'Caveat Brush Fallback'",
+  //               },
+  //             },
+  //           ],
+  //         },
+  //         {
+  //           type: "text",
+  //           text: "f",
+  //         },
+  //         {
+  //           type: "text",
+  //           text: "daf",
+  //           marks: [
+  //             {
+  //               type: "highlight",
+  //               attrs: {
+  //                 color: "#98FF98",
+  //               },
+  //             },
+  //           ],
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // };
+
+  console.log("the date: ", date);
+  const session = await auth();
+  if (!session?.user?.id) throw new Error("User not authenticated");
+  const userId = session.user.id;
+
+  const [year, month, day] = date.split("-").map(Number);
+  const todoDate = new Date(Date.UTC(year, month - 1, day));
+
+  console.log("converted to date: ", todoDate);
+  console.log("userId", userId);
+
+  try {
+    await prisma.todo.upsert({
+      where: {
+        userId_date: {
+          userId,
+          date: todoDate,
+        },
+      },
+      update: {
+        content,
+      },
+      create: {
+        userId,
+        date: todoDate,
+        content,
+      },
+    });
+  } catch (error) {
+    console.log("The error is:", error);
+    throw new Error("Failed to save todo");
+  }
+};

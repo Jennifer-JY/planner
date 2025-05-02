@@ -3,7 +3,6 @@ import Highlight from "@tiptap/extension-highlight";
 import FontFamily from "@tiptap/extension-font-family";
 import TextStyle from "@tiptap/extension-text-style";
 import Typography from "@tiptap/extension-typography";
-
 import StarterKit from "@tiptap/starter-kit";
 
 export const editorConfig = {

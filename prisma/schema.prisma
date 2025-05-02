@@ -27,7 +27,8 @@ model Todo {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   date DateTime
   content Json
-
+  
   @@index([userId])
   @@index([date])
+  @@unique([userId, date], name: "userId_date")
 }
