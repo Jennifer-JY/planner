@@ -52,7 +52,6 @@ const Calendar = async ({ propMonthYear }: { propMonthYear: string }) => {
       </div>
       <div className="inline-block max-w-full">
         <div>{data?.error}</div>
-        <span>Lorem ipsum dolor </span>
       </div>
     </>
   );

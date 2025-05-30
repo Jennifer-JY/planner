@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import RegisterForm from "../ui/components/authentication/register";
 
-const LogIn = () => {
+const Register = () => {
   return (
     <div className="flex justify-center h-screen items-center bg-[#c0c0c0]">
       <Suspense>
@@ -11,4 +11,4 @@ const LogIn = () => {
   );
 };
 
-export default LogIn;
+export default Register;

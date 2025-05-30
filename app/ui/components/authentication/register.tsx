@@ -1,20 +1,27 @@
 "use client";
 
+import { signIn } from "@/auth";
 import { register } from "@/lib/actions";
 import { useSearchParams } from "next/navigation";
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 
 const RegisterForm = () => {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/calendar";
-  const [errorMessage, formAction, isPending] = useActionState(
+  const [retMessage, formAction, isPending] = useActionState(
     register,
     undefined
   );
 
-  {
-    console.log(errorMessage);
-  }
+  useEffect(() => {
+    if (retMessage?.success) {
+      signIn("credentials", {
+        email: retMessage.signInInfo?.email,
+        password: retMessage.signInInfo?.password,
+        callbackUrl: callbackUrl,
+      });
+    }
+  }, [callbackUrl, retMessage]);
 
   return (
     <div className="w-96">
@@ -29,10 +36,10 @@ const RegisterForm = () => {
           type="text"
           name="email"
         ></input>
-        {errorMessage?.errors?.email && (
+        {retMessage?.errors?.email && (
           <>
             Error:{" "}
-            {errorMessage.errors.email.map((msg, index) => (
+            {retMessage.errors.email.map((msg, index) => (
               <div className="text-red-500 text-sm mt-1" key={index}>
                 {msg};
               </div>
@@ -46,10 +53,10 @@ const RegisterForm = () => {
           className="border-solid border-2 h-10"
           name="password"
         ></input>
-        {errorMessage?.errors?.password && (
+        {retMessage?.errors?.password && (
           <>
             Error:{" "}
-            {errorMessage.errors.password.map((msg, index) => (
+            {retMessage.errors.password.map((msg, index) => (
               <div className="text-red-500 text-sm mt-1" key={index}>
                 {msg};
               </div>
@@ -63,10 +70,10 @@ const RegisterForm = () => {
           className="border-solid border-2 h-10"
           name="confirmPassword"
         ></input>
-        {errorMessage?.errors?.confirmPassword && (
+        {retMessage?.errors?.confirmPassword && (
           <>
             Error:{" "}
-            {errorMessage.errors.confirmPassword.map((msg, index) => (
+            {retMessage.errors.confirmPassword.map((msg, index) => (
               <div className="text-red-500 text-sm mt-1" key={index}>
                 {msg};
               </div>
@@ -82,10 +89,10 @@ const RegisterForm = () => {
         >
           Register
         </button>
-        {errorMessage?.errors?.general && (
+        {retMessage?.errors?.general && (
           <>
             Error:{" "}
-            {errorMessage.errors.general.map((msg, index) => (
+            {retMessage.errors.general.map((msg, index) => (
               <div className="text-red-500 text-sm mt-1" key={index}>
                 {msg};
               </div>

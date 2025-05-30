@@ -1,3 +1,3 @@
 export const CalendarSkeleton = () => {
-  return <div>Wait</div>;
+  return <div>loading...</div>;
 };

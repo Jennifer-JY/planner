@@ -67,6 +67,9 @@ const Tiptap = ({ content }: { content: JSONContent }) => {
    * like attrs.This is a known limitation with Server Actions + use server, which
    * expects the input to be plain serializable JSON.
    */
+
+  // TODO: Validate the structure and format of the input
+  // also prevent maliciously large text content to protect database
   const handleSave = async () => {
     setIsSaving(true);
     setErrorMessage(null);

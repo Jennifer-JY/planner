@@ -33,6 +33,10 @@ type RegisterState = {
     general?: string[];
   };
   success?: boolean;
+  signInInfo?: {
+    email: string;
+    password: string;
+  };
 };
 
 const userRegisterschema = z
@@ -132,6 +136,13 @@ export const fetchTodosGivenId = async (
   date: string
 ): Promise<TodoForTodoId> => {
   try {
+    const session = await auth();
+    if (!session || !session.user?.id) {
+      return {
+        todos: {},
+        error: "User is not logged in",
+      };
+    }
     const [year, month, day] = date.split("-");
     const todoDate = new Date(
       Date.UTC(Number(year), Number(month) - 1, Number(day), 0, 0, 0)
@@ -139,8 +150,10 @@ export const fetchTodosGivenId = async (
     const todos = await prisma.todo.findMany({
       where: {
         date: todoDate,
+        userId: session.user.id,
       },
     });
+
     if (todos.length === 0) {
       return {
         todos: { type: "doc", content: [] },
@@ -226,16 +239,7 @@ export const register = async (
     });
 
     console.log("Redirecting...");
-    // Log new users in
-    const redirectTo = formData.get("redirectTo") || "/calendar";
-    await signIn("credentials", {
-      redirect: true,
-      email,
-      password,
-      callbackUrl: redirectTo,
-    });
-    console.log("return success");
-    return { success: true };
+    return { success: true, signInInfo: { email: email, password: password } };
   } catch (error) {
     console.error("Registration error:", error);
     return {
