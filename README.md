@@ -46,5 +46,5 @@ pnpm run dev
 
 👩🏻‍💻 In progress
 
-Core functionality is implemented
+Core functionality is implemented  
 Tests are coming soon
