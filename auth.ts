@@ -6,17 +6,6 @@ import { z } from "zod";
 import bcrypt from "bcrypt";
 import prisma from "./lib/prisma";
 
-// const users = [
-//   {
-//     email: "test@outlook.com",
-//     password: "$2a$12$YvOQ.WawaNopqJkFBjE.Oeiw06VMenQ1ejit5ypt0ycOPiTY5tIqG",
-//   }, // mycalendar123!
-//   {
-//     email: "test2@outlook.com",
-//     password: "$2a$12$WQO5ih9mQZ3mSajlB3FlauPHnMWe7Hby4ieC6gBzKVFzDGNfSZfeO",
-//   }, // yourcalendar123!
-// ];
-
 const getUser = async (email: string) => {
   const res = await prisma.user.findUnique({
     where: {
