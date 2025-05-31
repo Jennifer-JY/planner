@@ -30,6 +30,7 @@ const LoginForm = () => {
           id="login-password"
           className="border-solid border-2 h-10"
           name="password"
+          type="password"
         ></input>
         <input type="hidden" name="redirectTo" value={callbackUrl} />
         <button

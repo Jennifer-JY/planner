@@ -197,7 +197,6 @@ export const register = async (
   prevState: RegisterState | undefined,
   formData: FormData
 ): Promise<RegisterState> => {
-  console.log("begin action");
   const validatedFields = userRegisterschema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
@@ -214,7 +213,7 @@ export const register = async (
     };
   }
   const { email, password } = validatedFields.data;
-  console.log("validation passed");
+
   try {
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({
@@ -238,7 +237,6 @@ export const register = async (
       },
     });
 
-    console.log("Redirecting...");
     return { success: true, signInInfo: { email: email, password: password } };
   } catch (error) {
     console.error("Registration error:", error);
@@ -251,7 +249,6 @@ export const register = async (
 // save todo: content: string, date: string, todoId: string|undefine
 
 export const saveTodo = async (content: JSONContent, date: string) => {
-  console.log(JSON.stringify(content, null, 2));
   // const testContent = {
   //   type: "doc",
   //   content: [
@@ -313,16 +310,12 @@ export const saveTodo = async (content: JSONContent, date: string) => {
   //   ],
   // };
 
-  console.log("the date: ", date);
   const session = await auth();
   if (!session?.user?.id) throw new Error("User not authenticated");
   const userId = session.user.id;
 
   const [year, month, day] = date.split("-").map(Number);
   const todoDate = new Date(Date.UTC(year, month - 1, day));
-
-  console.log("converted to date: ", todoDate);
-  console.log("userId", userId);
 
   try {
     await prisma.todo.upsert({
@@ -342,7 +335,7 @@ export const saveTodo = async (content: JSONContent, date: string) => {
       },
     });
   } catch (error) {
-    console.log("The error is:", error);
+    console.error("The error is:", error);
     throw new Error("Failed to save todo");
   }
 };

@@ -52,6 +52,7 @@ const RegisterForm = () => {
           id="register-password"
           className="border-solid border-2 h-10"
           name="password"
+          type="password"
         ></input>
         {retMessage?.errors?.password && (
           <>
@@ -69,6 +70,7 @@ const RegisterForm = () => {
           id="register-password-confirm"
           className="border-solid border-2 h-10"
           name="confirmPassword"
+          type="password"
         ></input>
         {retMessage?.errors?.confirmPassword && (
           <>

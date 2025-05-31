@@ -5,7 +5,7 @@ import { fetchTodosGivenId } from "@/lib/actions";
 const TodoEditorPage = async (props: { params: Promise<{ date: string }> }) => {
   const params = await props.params;
   const todos = await fetchTodosGivenId(params.date);
-  console.log(todos);
+
   return (
     <>
       <div className="m-9">

@@ -6,7 +6,7 @@ const colors = [
     value: "#98FF98",
   },
   {
-    name: "Yello",
+    name: "Yellow",
     value: "#FFFF98",
   },
   {
