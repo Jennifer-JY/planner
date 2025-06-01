@@ -1,6 +1,7 @@
 "use client";
 
 import { authenticate } from "@/lib/actions";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 
@@ -40,6 +41,15 @@ const LoginForm = () => {
         >
           LogIn
         </button>
+        <div className="mt-7">
+          Don&apos;t have an account?{" "}
+          <Link
+            className="underline text-blue-500 hover:text-blue-300"
+            href="/register"
+          >
+            Register
+          </Link>
+        </div>
         {errorMessage && <>Error: {errorMessage}</>}
       </form>
     </div>

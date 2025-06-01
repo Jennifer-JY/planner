@@ -46,5 +46,5 @@ pnpm run dev
 
 👩🏻‍💻 In progress
 
-Core functionality is implemented  
-Tests are coming soon
+- All major features are implemented
+- Currently refining UI/UX, cleaning up code, and preparing to add tests
