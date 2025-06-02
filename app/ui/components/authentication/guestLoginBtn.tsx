@@ -2,13 +2,20 @@
 
 import { useState } from "react";
 import { createGuestUser } from "@/lib/actions";
+import { useRouter } from "next/navigation";
 
 export default function GuestLoginBtn() {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleGuest = async () => {
     setLoading(true);
-    await createGuestUser();
+    const res = await createGuestUser();
+    if (res.success) {
+      router.push("/calendar");
+    } else {
+      alert("Opps, something went wrong, please try again.");
+    }
     setLoading(false);
   };
 

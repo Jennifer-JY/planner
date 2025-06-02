@@ -340,32 +340,38 @@ export const saveTodo = async (content: JSONContent, date: string) => {
   }
 };
 
-export async function createGuestUser() {
-  const email = process.env.GUEST_EMAIL!;
-  const password = process.env.GUEST_PASSWORD!;
-  // Delete the previous guests data, start fresh
-  const existingUser = await prisma.user.findUnique({
-    where: { email },
-  });
-
-  if (existingUser) {
-    await prisma.user.delete({
+export async function createGuestUser(): Promise<{ success: boolean }> {
+  try {
+    const email = process.env.GUEST_EMAIL!;
+    const password = process.env.GUEST_PASSWORD!;
+    // Delete the previous guests data, start fresh
+    const existingUser = await prisma.user.findUnique({
       where: { email },
     });
-    // Cascade will delete their todos too
-  }
 
-  // Re-create user
-  await prisma.user.create({
-    data: {
+    if (existingUser) {
+      await prisma.user.delete({
+        where: { email },
+      });
+      // Cascade will delete their todos too
+    }
+
+    // Re-create user
+    await prisma.user.create({
+      data: {
+        email,
+        password: await bcrypt.hash(password, 10),
+      },
+    });
+
+    await signIn("credentials", {
       email,
-      password: await bcrypt.hash(password, 10),
-    },
-  });
-
-  await signIn("credentials", {
-    email,
-    password,
-    redirectTo: "/calendar",
-  });
+      password,
+      redirect: false,
+    });
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    return { success: false };
+  }
 }
