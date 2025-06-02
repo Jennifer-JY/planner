@@ -23,7 +23,7 @@ This project focuses on simplicity, clarity, and real-world usability.
 **Note:**
 
 - You must be logged in to save and view your data.
-- Each user has a separate to-do list.
+- Each user has a separate calendar.
 - You can register with any email address (e.g., fake@example.com). No real email or verification is required.
 
 ## 🛠️ Tech Stack
