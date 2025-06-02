@@ -14,6 +14,18 @@ PlanView is a calendar app inspired by the way I plan my own life. It provides a
 
 This project focuses on simplicity, clarity, and real-world usability.
 
+## 📝 Usage Tips
+
+- Click on a date to open the editor.
+- Add your to-do items and click Save to store them.
+- Return to the date to view your saved content.
+
+**Note:**
+
+- You must be logged in to save and view your data.
+- Each user has a separate to-do list.
+- You can register with any email address (e.g., fake@example.com). No real email or verification is required.
+
 ## 🛠️ Tech Stack
 
 - Next.js
