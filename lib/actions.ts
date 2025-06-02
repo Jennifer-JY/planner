@@ -339,3 +339,25 @@ export const saveTodo = async (content: JSONContent, date: string) => {
     throw new Error("Failed to save todo");
   }
 };
+
+export async function createGuestUser(email: string, password: string) {
+  // Delete the previous guests data, start fresh
+  const existingUser = await prisma.user.findUnique({
+    where: { email },
+  });
+
+  if (existingUser) {
+    await prisma.user.delete({
+      where: { email },
+    });
+    // Cascade will delete their todos too
+  }
+
+  // Re-create user
+  await prisma.user.create({
+    data: {
+      email,
+      password: await bcrypt.hash(password, 10),
+    },
+  });
+}
