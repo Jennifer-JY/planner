@@ -10,9 +10,9 @@ PlanView is a calendar app inspired by the way I plan my own life. It provides a
 
 - 📝 The text editor is built with Tiptap, supporting:
 
-- Rich text formatting: bold, italic, and different font families
+  - Rich text formatting: bold, italic, and different font families
 
-- Text highlighting and custom colours for better visual organisation
+  - Text highlighting and custom colours for better visual organisation
 
 This project focuses on simplicity, clarity, and real-world usability.
 
