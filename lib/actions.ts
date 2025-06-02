@@ -340,7 +340,9 @@ export const saveTodo = async (content: JSONContent, date: string) => {
   }
 };
 
-export async function createGuestUser(email: string, password: string) {
+export async function createGuestUser() {
+  const email = process.env.GUEST_EMAIL!;
+  const password = process.env.GUEST_PASSWORD!;
   // Delete the previous guests data, start fresh
   const existingUser = await prisma.user.findUnique({
     where: { email },
@@ -359,5 +361,11 @@ export async function createGuestUser(email: string, password: string) {
       email,
       password: await bcrypt.hash(password, 10),
     },
+  });
+
+  await signIn("credentials", {
+    email,
+    password,
+    redirectTo: "/calendar",
   });
 }
