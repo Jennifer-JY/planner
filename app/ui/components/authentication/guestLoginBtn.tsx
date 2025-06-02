@@ -13,10 +13,11 @@ export default function GuestLoginBtn() {
     const res = await createGuestUser();
     if (res.success) {
       router.push("/calendar");
+      return;
     } else {
       alert("Opps, something went wrong, please try again.");
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
