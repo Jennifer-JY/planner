@@ -1,5 +1,7 @@
 # Planview
 
+_This project is a work-in-progress. I’m continuously learning and improving it_
+
 ## Description
 
 PlanView is a calendar app inspired by the way I plan my own life. It provides a clean month overview and lets users click on individual dates to edit their daily content.
