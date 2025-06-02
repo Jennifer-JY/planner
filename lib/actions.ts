@@ -5,6 +5,7 @@ import { AuthError } from "next-auth";
 import prisma from "./prisma";
 import { z } from "zod";
 import bcrypt from "bcrypt";
+import { nanoid } from "nanoid";
 
 type DayDisplayState = {
   todoId: string;
@@ -342,7 +343,9 @@ export const saveTodo = async (content: JSONContent, date: string) => {
 
 export async function createGuestUser(): Promise<{ success: boolean }> {
   try {
-    const email = process.env.GUEST_EMAIL!;
+    const prefix =
+      new Date().toISOString().slice(0, 10).replace(/-/g, "") + nanoid(8);
+    const email = prefix + process.env.GUEST_EMAIL!;
     const password = process.env.GUEST_PASSWORD!;
     // Delete the previous guests data, start fresh
     const existingUser = await prisma.user.findUnique({
