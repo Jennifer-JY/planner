@@ -1,10 +1,11 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function GuestLoginBtn() {
   const [loading, setLoading] = useState(false);
-
+  const router = useRouter();
   const handleGuest = async () => {
     setLoading(true);
     try {
@@ -13,12 +14,11 @@ export default function GuestLoginBtn() {
       });
       const data = await res.json();
 
-      if (data.success) {
-        window.location.href = "/calendar";
-        return;
-      } else {
+      if (data && !data.success) {
         alert("Oops, something went wrong, please try again.");
+        setLoading(false);
       }
+      router.refresh();
     } catch (err) {
       console.error(err);
       alert("Oops, something went wrong, please try again.");
