@@ -19,10 +19,10 @@ export default function GuestLoginBtn() {
         setLoading(false);
       }
       router.refresh();
+      return;
     } catch (err) {
       console.error(err);
       alert("Oops, something went wrong, please try again.");
-    } finally {
       setLoading(false);
     }
   };
