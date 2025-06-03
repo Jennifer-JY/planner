@@ -1,21 +1,28 @@
 "use client";
 
 import { useState } from "react";
-import { createGuestUser } from "@/lib/actions";
-import { useRouter } from "next/navigation";
 
 export default function GuestLoginBtn() {
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const handleGuest = async () => {
     setLoading(true);
-    const res = await createGuestUser();
-    if (res.success) {
-      router.push("/calendar");
-      return;
-    } else {
-      alert("Opps, something went wrong, please try again.");
+    try {
+      const res = await fetch("/api/guest-login", {
+        method: "POST",
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        window.location.href = "/calendar";
+        return;
+      } else {
+        alert("Oops, something went wrong, please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Oops, something went wrong, please try again.");
+    } finally {
       setLoading(false);
     }
   };

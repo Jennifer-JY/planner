@@ -6,6 +6,8 @@ import { z } from "zod";
 import bcrypt from "bcrypt";
 import prisma from "./lib/prisma";
 
+export type { Session } from "next-auth";
+
 const getUser = async (email: string) => {
   const res = await prisma.user.findUnique({
     where: {
