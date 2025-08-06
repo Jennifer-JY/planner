@@ -104,7 +104,7 @@ const Tiptap = ({ content }: { content: JSONContent }) => {
             />
           </div>
           <EditorContent
-            className="editor-content-input"
+            className="editor-content-input "
             editor={editorContent}
           />
         </div>

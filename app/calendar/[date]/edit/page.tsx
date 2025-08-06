@@ -8,8 +8,8 @@ const TodoEditorPage = async (props: { params: Promise<{ date: string }> }) => {
 
   return (
     <>
-      <div className="m-9">
-        <h1 className={`${merriweather.className} mb-5`}>
+      <div className="ml-24 mr-24 mt-4">
+        <h1 className={`${merriweather.className} mb-5 text-2xl`}>
           Edit Todo for <span className="font-bold">{`[${params.date}]`}</span>
         </h1>
 

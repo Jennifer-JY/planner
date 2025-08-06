@@ -20,36 +20,45 @@ const Calendar = async ({ propMonthYear }: { propMonthYear: string }) => {
   return (
     <>
       <div className="w-full h-full grid grid-cols-7 grid-rows-[1fr_4fr_4fr_4fr_4fr_4fr] border-2">
-        {days.map((d) => {
-          return (
-            <div
-              className="border text-white font-bold flex justify-center items-center"
-              key={d.value}
-              style={{ backgroundColor: d.color }}
-            >
-              {d.value}
-            </div>
-          );
-        })}
+        {/* Header row */}
+        {days.map((d) => (
+          <div
+            key={d.value}
+            className="border text-white font-bold flex justify-center items-center"
+            style={{ backgroundColor: d.color }}
+          >
+            {d.value}
+          </div>
+        ))}
+
+        {/* Calendar cells */}
         {data &&
           data.todos?.map((a) => {
+            const key = `${a.year}-${a.month}-${a.day}`;
+
+            if (a.day > 31) {
+              // Just render an empty placeholder
+              return (
+                <div key={key} className="border inline-block max-w-full" />
+              );
+            }
+
             return (
-              <div
-                key={`${a.year}-${a.month}-${a.day}`}
-                className="border inline-block max-w-full"
+              <Link
+                key={key}
+                href={`/calendar/${a.year}-${a.month}-${a.day}/edit`}
               >
-                {a.day <= 31 && (
-                  <Link href={`/calendar/${a.year}-${a.month}-${a.day}/edit`}>
-                    <span className="m-1 flex justify-center items-center border w-6 h-6 ">
-                      {a.day}
-                    </span>
-                    <ReadOnlyEditor jsonContent={a.content as JSONContent} />
-                  </Link>
-                )}
-              </div>
+                <div className="border inline-block max-w-full h-full w-full cursor-pointer p-1">
+                  <span className="m-1 flex justify-center items-center border w-6 h-6">
+                    {a.day}
+                  </span>
+                  <ReadOnlyEditor jsonContent={a.content as JSONContent} />
+                </div>
+              </Link>
             );
           })}
       </div>
+
       <div className="inline-block max-w-full">
         <div>{data?.error}</div>
       </div>

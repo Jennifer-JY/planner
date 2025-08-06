@@ -4,7 +4,7 @@ import { JSONContent } from "@tiptap/react";
 import { AuthError } from "next-auth";
 import prisma from "./prisma";
 import { z } from "zod";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { nanoid } from "nanoid";
 
 type DayDisplayState = {
