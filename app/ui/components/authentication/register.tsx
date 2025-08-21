@@ -84,13 +84,27 @@ const RegisterForm = () => {
         )}
 
         <input type="hidden" name="redirectTo" value={callbackUrl} />
-        <button
-          type="submit"
-          aria-disabled={isPending}
-          className="border-solid border-2 mt-8 w-1/2 mx-auto h-8 bg-[#1574E9] text-white font-bold rounded-md"
-        >
-          Register
-        </button>
+
+        {!isPending && (
+          <button
+            type="submit"
+            aria-disabled={isPending}
+            disabled={isPending}
+            className="border-solid border-2 mt-8 w-1/2 mx-auto h-8 bg-[#1574E9] text-white font-bold rounded-md"
+          >
+            Register
+          </button>
+        )}
+
+        {isPending && (
+          <button
+            className="text-white bg-gray-400 cursor-not-allowed border-solid border-2 mt-8 w-1/2 mx-auto h-8 font-bold rounded-md"
+            disabled
+          >
+            Regitering...
+          </button>
+        )}
+
         {retMessage?.errors?.general && (
           <>
             Error:{" "}
