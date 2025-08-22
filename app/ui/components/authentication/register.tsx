@@ -4,7 +4,7 @@ import { signIn } from "@/auth";
 import { register } from "@/lib/actions";
 import clsx from "clsx";
 import { useSearchParams } from "next/navigation";
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect } from "react";
 
 const RegisterForm = () => {
   const searchParams = useSearchParams();
