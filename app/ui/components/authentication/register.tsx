@@ -13,11 +13,9 @@ const RegisterForm = () => {
     register,
     undefined
   );
-  const [isRedirecting, setIsRedirecting] = useState(false);
 
   useEffect(() => {
     if (retMessage?.success) {
-      setIsRedirecting(true);
       signIn("credentials", {
         email: retMessage.signInInfo?.email,
         password: retMessage.signInInfo?.password,
@@ -25,7 +23,6 @@ const RegisterForm = () => {
       });
     }
   }, [callbackUrl, retMessage]);
-  const disabled = isPending || isRedirecting;
 
   return (
     <div className="w-96">
