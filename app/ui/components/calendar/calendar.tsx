@@ -15,6 +15,9 @@ const days = [
 ];
 
 const Calendar = async ({ propMonthYear }: { propMonthYear: string }) => {
+  if (process.env.NODE_ENV !== "production") {
+    await new Promise((res) => setTimeout(res, 12000));
+  }
   const data = await displayMonth(propMonthYear);
 
   return (

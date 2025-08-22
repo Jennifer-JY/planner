@@ -59,4 +59,4 @@ pnpm run dev
 👩🏻‍💻 In progress
 
 - All major features are implemented
-- Currently refining UI/UX, cleaning up code, and preparing to add tests
+- Currently refining UI/UX, cleaning up code, and adding tests

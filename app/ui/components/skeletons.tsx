@@ -1,3 +1,5 @@
+import FullScreenSpinner from "./calendar/loadingSpinner";
+
 export const CalendarSkeleton = () => {
-  return <div>loading...</div>;
+  return <FullScreenSpinner />;
 };
