@@ -52,7 +52,12 @@ const Calendar = async ({ propMonthYear }: { propMonthYear: string }) => {
                   <span className="m-1 flex justify-center items-center border w-6 h-6">
                     {a.day}
                   </span>
-                  <ReadOnlyEditor jsonContent={a.content as JSONContent} />
+                  {/* 👇 clamp wrapper for manual inspection */}
+                  <div className="min-h-0 max-h-24 overflow-hidden relative">
+                    <ReadOnlyEditor jsonContent={a.content as JSONContent} />
+                    {/* optional fade for indicating 'more' */}
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-white to-transparent" />{" "}
+                  </div>
                 </div>
               </Link>
             );
