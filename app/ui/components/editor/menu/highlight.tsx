@@ -28,6 +28,8 @@ export const Highlighter = ({ editor }: EditorProp) => {
       <select
         onChange={handleSelection}
         className="bg-[#7EBDC2] text-white font-bold"
+        aria-label="highlighter"
+        title="highlighter"
       >
         <option value="">Select Highlighter</option>
         {colors.map((c) => {

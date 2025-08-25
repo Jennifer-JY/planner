@@ -11,6 +11,8 @@ export const SelectFont = ({ editor }: EditorProp) => {
       <select
         onChange={handleSelection}
         className="bg-[#7EBDC2] text-[#C2837E] font-bold"
+        aria-label="font"
+        title="font"
       >
         <option value="">Select Font Family</option>
         <option value={roboto.style.fontFamily} data-test-id="roboto">

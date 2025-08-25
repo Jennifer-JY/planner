@@ -29,6 +29,8 @@ export const SelectColor = ({ editor }: EditorProp) => {
         value={color}
         onChange={handleInput}
         data-testid="setColor"
+        aria-label="text color"
+        title="text color"
       />
     </div>
   );

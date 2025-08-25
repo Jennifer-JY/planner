@@ -10,6 +10,9 @@ export const BoldNitalic = ({ editor, currentEditorState }: EditorProp) => {
         className={`${
           currentEditorState?.isBold ? "is-active" : ""
         } hover:bg-[#F3DFA2]`}
+        aria-label="Bold"
+        title="Bold"
+        aria-pressed={!!currentEditorState?.isBold}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -28,6 +31,9 @@ export const BoldNitalic = ({ editor, currentEditorState }: EditorProp) => {
         className={`${
           currentEditorState?.isItalic ? "is-active" : ""
         } hover:bg-[#F3DFA2]`}
+        aria-label="Italic"
+        title="Italic"
+        aria-pressed={!!currentEditorState?.isItalic}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

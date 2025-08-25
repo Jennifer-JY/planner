@@ -8,6 +8,9 @@ PlanView is a calendar app inspired by the way I plan my own life. It provides a
 
 - 🔐 Users can register and log in to manage their own calendars.
 
+  - **Note:**
+    You can click **“Try it out as a guest”** to use the calendar just like a logged-in user.
+
 - 📝 The text editor is built with Tiptap, supporting:
 
   - Rich text formatting: bold, italic, and different font families
@@ -24,7 +27,7 @@ This project focuses on simplicity, clarity, and real-world usability.
 
 **Note:**
 
-- You can click “Try it out as a guest” to use the calendar just like a logged-in user.
+- You can click **“Try it out as a guest”** to use the calendar just like a logged-in user.
 
 ## 🛠️ Tech Stack
 
@@ -42,6 +45,16 @@ This project focuses on simplicity, clarity, and real-world usability.
 
 [Planview on Vercel](https://planner-drab-two.vercel.app/)
 
+## Clone the repo
+
+```bash
+# Clone with SSH (if you have SSH keys set up)
+git clone git@github.com:Jennifer-JY/planner.git
+
+# OR clone with HTTPS
+# git clone https://github.com/Jennifer-JY/planner.git
+```
+
 ## Installation
 
 ```bash
@@ -52,6 +65,12 @@ pnpm install
 
 ```bash
 pnpm run dev
+```
+
+## Run tests
+
+```bash
+pnpm run test
 ```
 
 ## Project status
