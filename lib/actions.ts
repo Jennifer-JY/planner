@@ -7,7 +7,7 @@ import { z } from "zod";
 import bcrypt from "bcryptjs";
 import { nanoid } from "nanoid";
 
-type DayDisplayState = {
+export type DayDisplayState = {
   todoId: string;
   day: number; // if 0, we mean no date
   month: number;
