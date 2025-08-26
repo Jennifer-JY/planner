@@ -250,67 +250,6 @@ export const register = async (
 // save todo: content: string, date: string, todoId: string|undefine
 
 export const saveTodo = async (content: JSONContent, date: string) => {
-  // const testContent = {
-  //   type: "doc",
-  //   content: [
-  //     {
-  //       type: "paragraph",
-  //       content: [
-  //         {
-  //           type: "text",
-  //           text: "a",
-  //         },
-  //         {
-  //           type: "text",
-  //           text: "zvf",
-  //           marks: [
-  //             {
-  //               type: "textStyle",
-  //               attrs: {
-  //                 color: "#ef1515",
-  //                 fontFamily: "'Roboto', 'Roboto Fallback'",
-  //               },
-  //             },
-  //           ],
-  //         },
-  //         {
-  //           type: "text",
-  //           text: "a",
-  //         },
-  //         {
-  //           type: "text",
-  //           text: "dfdafdfad",
-  //           marks: [
-  //             {
-  //               type: "textStyle",
-  //               attrs: {
-  //                 color: "#000000",
-  //                 fontFamily: "'Caveat Brush', 'Caveat Brush Fallback'",
-  //               },
-  //             },
-  //           ],
-  //         },
-  //         {
-  //           type: "text",
-  //           text: "f",
-  //         },
-  //         {
-  //           type: "text",
-  //           text: "daf",
-  //           marks: [
-  //             {
-  //               type: "highlight",
-  //               attrs: {
-  //                 color: "#98FF98",
-  //               },
-  //             },
-  //           ],
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // };
-
   const session = await auth();
   if (!session?.user?.id) throw new Error("User not authenticated");
   const userId = session.user.id;
