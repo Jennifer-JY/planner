@@ -79,8 +79,7 @@ const Tiptap = ({ content }: { content: JSONContent }) => {
     try {
       await saveTodo(payload, date);
       router.push("/calendar");
-    } catch (error) {
-      // console.error("Failed to save todo:", error);
+    } catch {
       setErrorMessage("Failed to save. Please try again.");
     } finally {
       setIsSaving(false);
