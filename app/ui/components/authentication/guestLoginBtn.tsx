@@ -10,7 +10,7 @@ export default function GuestLoginBtn() {
     setLoading(true);
     try {
       const res = await fetch("/api/guest-login", {
-        method: "POST",
+        method: "GET",
       });
       const data = await res.json();
 

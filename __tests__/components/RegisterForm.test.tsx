@@ -3,16 +3,8 @@ import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 
-jest.mock("@/lib/actions", () => ({
+jest.mock("@/lib/actions/authentication", () => ({
   register: jest.fn(),
-}));
-
-jest.mock("@/auth", () => ({
-  signIn: jest.fn(),
-}));
-
-jest.mock("next/navigation", () => ({
-  useSearchParams: () => new URLSearchParams("?callbackUrl=/after"),
 }));
 
 jest.mock("react", () => {

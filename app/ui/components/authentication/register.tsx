@@ -1,7 +1,7 @@
 "use client";
 
 import { signIn } from "@/auth";
-import { register } from "@/lib/actions";
+import { register } from "@/lib/actions/authentication";
 import clsx from "clsx";
 import { useSearchParams } from "next/navigation";
 import { useActionState, useEffect } from "react";

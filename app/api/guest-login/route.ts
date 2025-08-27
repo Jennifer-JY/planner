@@ -1,7 +1,7 @@
-import { createGuestUser } from "@/lib/actions";
+import { createGuestUser } from "@/lib/actions/authentication";
 import { NextResponse } from "next/server";
 
-export async function POST() {
+export async function GET() {
   try {
     await createGuestUser();
     return NextResponse.json({ success: true });

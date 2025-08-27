@@ -2,12 +2,8 @@ import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 
-jest.mock("@/lib/actions", () => ({
+jest.mock("@/lib/actions/authentication", () => ({
   authenticate: jest.fn(),
-}));
-jest.mock("next/link", () => (props: any) => <a {...props} />);
-jest.mock("next/navigation", () => ({
-  useSearchParams: () => new URLSearchParams("?callbackUrl=/after"),
 }));
 
 import LoginForm from "@/app/ui/components/authentication/login";

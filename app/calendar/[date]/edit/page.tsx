@@ -1,6 +1,6 @@
 import Tiptap from "@/app/ui/components/editor/tiptap";
 import { merriweather } from "@/app/ui/fonts";
-import { fetchTodosGivenId } from "@/lib/actions";
+import { fetchTodosGivenId } from "@/lib/actions/todo";
 
 const TodoEditorPage = async (props: { params: Promise<{ date: string }> }) => {
   const params = await props.params;
