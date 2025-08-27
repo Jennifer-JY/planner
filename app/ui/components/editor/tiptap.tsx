@@ -45,6 +45,14 @@ const Tiptap = ({ content }: { content: JSONContent }) => {
   const params = useParams(); // returns an object of dynamic route segments
   const date: string = params.date as string; // will be "2025-1-9" as a string
 
+  const m = date.match(/^(\d{4})-(\d{1,2})/);
+  if (!m) throw new Error("Invalid date format");
+  const year = Number(m[1]);
+  const month = Number(m[2]);
+  if (month < 1 || month > 12) throw new Error("Invalid month");
+
+  const ym = `${year}-${String(month).padStart(2, "0")}`;
+
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
@@ -78,7 +86,8 @@ const Tiptap = ({ content }: { content: JSONContent }) => {
 
     try {
       await saveTodo(payload, date);
-      router.push("/calendar");
+
+      router.push(`/calendar?date=${ym}`);
     } catch {
       setErrorMessage("Failed to save. Please try again.");
     } finally {
