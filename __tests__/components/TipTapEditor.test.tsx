@@ -4,8 +4,8 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import type { JSONContent } from "@tiptap/react";
-import { saveTodo } from "@/lib/actions";
 import "@testing-library/jest-dom";
+import { saveTodo } from "@/lib/actions/todo";
 
 const pushMock = jest.fn();
 
@@ -14,7 +14,7 @@ jest.mock("next/navigation", () => ({
   useRouter: () => ({ push: pushMock }),
 }));
 
-jest.mock("@/lib/actions", () => ({
+jest.mock("@/lib/actions/todo", () => ({
   saveTodo: jest.fn(),
 }));
 
@@ -43,7 +43,6 @@ jest.mock("@tiptap/react", () => {
 });
 
 import Tiptap from "@/app/ui/components/editor/tiptap";
-import { useRouter } from "next/navigation";
 
 describe("<Tiptap /> save flow", () => {
   const initialContent: JSONContent = {

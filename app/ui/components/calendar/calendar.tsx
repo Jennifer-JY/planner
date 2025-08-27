@@ -1,8 +1,8 @@
 "use server";
 import ReadOnlyEditor from "../editor/readOnlyEditor";
 import Link from "next/link";
-import { displayMonth } from "@/lib/actions";
 import { JSONContent } from "@tiptap/react";
+import { displayMonth } from "@/lib/actions/calendar";
 
 const days = [
   { value: "Mon", color: "#f94143" },

@@ -2,12 +2,12 @@
  * @jest-environment node
  */
 
-jest.mock("@/lib/actions", () => ({
+jest.mock("@/lib/actions/authentication", () => ({
   createGuestUser: jest.fn(),
 }));
 
 import { GET } from "@/app/api/guest-login/route";
-import { createGuestUser } from "@/lib/actions";
+import { createGuestUser } from "@/lib/actions/authentication";
 
 describe("guestLogin route", () => {
   afterEach(() => {

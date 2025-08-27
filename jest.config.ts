@@ -11,12 +11,6 @@ const config: Config = {
   collectCoverage: true,
   coverageProvider: "v8",
   testEnvironment: "jsdom",
-  // Add more setup options before each test is run
-  // setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/$1", // makes @/lib/... etc work in tests
-  },
-
   transform: {
     "^.+\\.(t|j)sx?$": [
       "babel-jest",
@@ -29,6 +23,15 @@ const config: Config = {
       },
     ],
   },
+
+  setupFilesAfterEnv: ["<rootDir>/tests/setupTests.ts"],
+  moduleNameMapper: {
+    "/prisma$": "<rootDir>/tests/__mocks__/prisma.ts",
+    "^@/(.*)$": "<rootDir>/$1",
+    "/auth$": "<rootDir>/tests/__mocks__/auth.ts",
+    "^next/link$": "<rootDir>/tests/__mocks__/next/link.tsx",
+  },
+  transformIgnorePatterns: ["/node_modules/(?!nanoid|next-auth|@auth/core)/"],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

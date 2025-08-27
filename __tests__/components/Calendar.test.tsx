@@ -1,12 +1,9 @@
-import { DayDisplayState } from "@/lib/actions";
 import { render, screen } from "@testing-library/react";
-import { displayMonth } from "@/lib/actions";
+import { displayMonth } from "@/lib/actions/calendar";
+import { DayDisplayState } from "@/lib/definitions";
 import "@testing-library/jest-dom";
-import userEvent from "@testing-library/user-event";
 
-jest.mock("next/link", () => (props: any) => <a {...props} />);
-
-jest.mock("@/lib/actions", () => ({
+jest.mock("@/lib/actions/calendar", () => ({
   displayMonth: jest.fn(),
 }));
 

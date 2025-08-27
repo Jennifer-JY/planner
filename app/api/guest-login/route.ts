@@ -1,4 +1,4 @@
-import { createGuestUser } from "@/lib/actions";
+import { createGuestUser } from "@/lib/actions/authentication";
 import { NextResponse } from "next/server";
 
 export async function GET() {

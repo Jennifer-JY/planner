@@ -1,6 +1,6 @@
 "use client";
 
-import { authenticate } from "@/lib/actions";
+import { authenticate } from "@/lib/actions/authentication";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";

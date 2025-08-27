@@ -11,7 +11,7 @@ import React, { useState } from "react";
 import Menu from "./menu/menu";
 import editorConfig from "./editor.config";
 import { useParams, useRouter } from "next/navigation";
-import { saveTodo } from "@/lib/actions";
+import { saveTodo } from "@/lib/actions/todo";
 
 const useMyeditorState = (editor: Editor | null) => {
   return useEditorState({
