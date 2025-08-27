@@ -6,6 +6,8 @@ _This project is a work-in-progress. I’m continuously learning and improving i
 
 ![Login as a guest user, see the calendar and add todo.](docs/demo-calendar.gif)
 
+![Register and log in](docs/demo-auth.gif)
+
 ## Description
 
 PlanView is a calendar app inspired by the way I plan my own life. It provides a clean month overview and lets users click on individual dates to edit their daily content.
