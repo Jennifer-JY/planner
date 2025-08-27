@@ -75,7 +75,7 @@ describe("<Tiptap /> save flow", () => {
       );
     });
 
-    expect(pushMock).toHaveBeenCalledWith("/calendar");
+    expect(pushMock).toHaveBeenCalledWith("/calendar?date=2025-01");
 
     // Button returns to normal
     expect(screen.getByRole("button", { name: /save/i })).toBeEnabled();
