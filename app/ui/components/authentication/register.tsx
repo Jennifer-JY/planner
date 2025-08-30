@@ -19,96 +19,136 @@ const RegisterForm = () => {
       signIn("credentials", {
         email: retMessage.signInInfo?.email,
         password: retMessage.signInInfo?.password,
-        callbackUrl: callbackUrl,
+        callbackUrl,
       });
     }
   }, [callbackUrl, retMessage]);
 
   return (
-    <div className="w-96">
-      <form
-        className="flex flex-col border-solid border-2 p-8 bg-white"
-        action={formAction}
-      >
-        <label htmlFor="register-email">E-mail</label>
-        <input
-          id="register-email"
-          className="border-solid border-2 h-10"
-          type="text"
-          name="email"
-        ></input>
-        {retMessage?.errors?.email && (
-          <>
-            Error:{" "}
-            {retMessage.errors.email.map((msg, index) => (
-              <div className="text-red-500 text-sm mt-1" key={index}>
-                {msg};
-              </div>
-            ))}
-          </>
-        )}
+    <div className="w-full max-w-md rounded-xl border border-gray-200 bg-white shadow-md p-8">
+      <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+        Create your account
+      </h2>
 
-        <label htmlFor="register-password">Password</label>
-        <input
-          id="register-password"
-          className="border-solid border-2 h-10"
-          name="password"
-          type="password"
-        ></input>
-        {retMessage?.errors?.password && (
-          <>
-            Error:{" "}
-            {retMessage.errors.password.map((msg, index) => (
-              <div className="text-red-500 text-sm mt-1" key={index}>
-                {msg};
-              </div>
-            ))}
-          </>
-        )}
+      <form className="flex flex-col space-y-5" action={formAction}>
+        {/* Email */}
+        <div className="flex flex-col">
+          <label
+            htmlFor="register-email"
+            className="text-sm font-medium text-gray-700 mb-1"
+          >
+            E-mail
+          </label>
+          <input
+            id="register-email"
+            className="rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+            required
+          />
+          {retMessage?.errors?.email && (
+            <>
+              <span className="sr-only">Error:</span>
+              <ul className="mt-1 text-sm text-red-600 list-disc list-inside">
+                {retMessage.errors.email.map((msg, index) => (
+                  <li key={index}>{msg};</li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
 
-        <label htmlFor="register-password-confirm">Confirm Password</label>
-        <input
-          id="register-password-confirm"
-          className="border-solid border-2 h-10"
-          name="confirmPassword"
-          type="password"
-        ></input>
-        {retMessage?.errors?.confirmPassword && (
-          <>
-            Error:{" "}
-            {retMessage.errors.confirmPassword.map((msg, index) => (
-              <div className="text-red-500 text-sm mt-1" key={index}>
-                {msg};
-              </div>
-            ))}
-          </>
-        )}
+        {/* Password */}
+        <div className="flex flex-col">
+          <label
+            htmlFor="register-password"
+            className="text-sm font-medium text-gray-700 mb-1"
+          >
+            Password
+          </label>
+          <input
+            id="register-password"
+            className="rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+            name="password"
+            type="password"
+            placeholder="••••••••"
+            required
+            minLength={8}
+          />
+          {retMessage?.errors?.password && (
+            <>
+              <span className="sr-only">Error:</span>
+              <ul className="mt-1 text-sm text-red-600 list-disc list-inside">
+                {retMessage.errors.password.map((msg, index) => (
+                  <li key={index}>{msg};</li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
+
+        {/* Confirm Password */}
+        <div className="flex flex-col">
+          <label
+            htmlFor="register-password-confirm"
+            className="text-sm font-medium text-gray-700 mb-1"
+          >
+            Confirm Password
+          </label>
+          <input
+            id="register-password-confirm"
+            className="rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+            name="confirmPassword"
+            type="password"
+            placeholder="••••••••"
+            required
+            minLength={8}
+          />
+          {retMessage?.errors?.confirmPassword && (
+            <>
+              <span className="sr-only">Error:</span>
+              <ul className="mt-1 text-sm text-red-600 list-disc list-inside">
+                {retMessage.errors.confirmPassword.map((msg, index) => (
+                  <li key={index}>{msg};</li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
 
         <input type="hidden" name="redirectTo" value={callbackUrl} />
 
+        {/* Submit */}
         <button
           type="submit"
           disabled={isPending}
           aria-busy={isPending}
           className={clsx(
-            "border-2 mt-4 w-1/2 mx-auto h-10 font-bold rounded-md",
+            "h-10 w-full rounded-md font-semibold transition",
             isPending
-              ? "bg-gray-400 cursor-not-allowed text-white"
-              : "bg-[#1574E9] text-white"
+              ? "bg-gray-400 text-white cursor-not-allowed"
+              : "bg-[#1574E9] hover:bg-[#0f63c7] text-white"
           )}
         >
           {isPending ? "Registering..." : "Register"}
         </button>
 
+        {/* General errors */}
         {retMessage?.errors?.general && (
-          <>
+          <div
+            className="mt-2 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700"
+            role="alert"
+            aria-live="polite"
+            aria-atomic="true"
+          >
             Error:{" "}
-            {retMessage.errors.general.map((msg, index) => (
-              <div className="text-red-500 text-sm mt-1" key={index}>
-                {msg};
-              </div>
-            ))}
-          </>
+            <ul className="list-disc list-inside">
+              {retMessage.errors.general.map((msg, index) => (
+                <li key={index}>{msg};</li>
+              ))}
+            </ul>
+          </div>
         )}
       </form>
     </div>
