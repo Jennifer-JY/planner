@@ -122,7 +122,7 @@ const Tiptap = ({ content }: { content: JSONContent }) => {
             className={`w-24 h-10 rounded-md font-bold ${
               isSaving
                 ? "bg-gray-400 text-white cursor-not-allowed"
-                : "bg-[#e98a15] text-[#F3DFA2] hover:bg-[#C2837E]"
+                : "bg-[#e98a15] text-white hover:bg-[#C2837E]"
             }`}
           >
             {isSaving ? "Saving..." : "Save"}
