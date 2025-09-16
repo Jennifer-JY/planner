@@ -4,9 +4,13 @@ _This project is a work-in-progress. I’m continuously learning and improving i
 
 ## 🎬 Demo
 
-![Login as a guest user, see the calendar and add todo.](docs/demo-calendar.gif)
+- Login as a guest user, see the calendar and add todo.
 
-![Register and log in](docs/demo-auth.gif)
+  ![Login as a guest user, see the calendar and add todo.](docs/demo-calendar.gif)
+
+- Register and log in
+
+  ![Register and log in](docs/demo-auth.gif)
 
 ## Description
 
